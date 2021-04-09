@@ -1,0 +1,7 @@
+div.todo-item div{
+    display: inline-block;
+}
+
+div.remove {
+    border: 1px solid black;
+}

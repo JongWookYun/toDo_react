@@ -37,6 +37,16 @@ handleKeyPress = (e) => {
   }
 }
 
+handleRemove   = (id) => {
+  console.log("handleRemove")
+  const { todos } = this.state;
+  // 일단 보고 한 거긴 한데 여기는 왜 state 전부를 가져 오는 거인지 잘 모르겠음.
+  // 이러면 input까지 가져와버리는 거
+  this.setState({
+    todos: todos.filter(todo => todo.id !== id)
+  });
+}
+
 // state = {
 //   todoList: ''
 // }
@@ -71,7 +81,10 @@ render() {
       // </div>
 
       <TodoList form={(<Form value={input} onKeyPress={handleKeyPress} onChange={handleChange} onCreate={handleCreate} /> )} >
-        <TodoItemList todos={this.state.todos}/>
+        <TodoItemList todos={this.state.todos} onRemove={this.handleRemove} />
+         {/*  질문: 78행의 this.handleRemove 에서 this를 빼면 함수 인식을 못 함. 77행 같은 경우는 this가 없는데도 잘 되면서
+                  77행과의 차이?
+         */}
       </TodoList>
     );
   }
